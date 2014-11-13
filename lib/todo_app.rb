@@ -4,7 +4,6 @@ class TodoApp < CommandLineApp
   def initialize(input, output)
     @input = input
     @view = View.new(output)
-    # @output = output
     @projects = []
     @tasks = []
   end
@@ -13,74 +12,24 @@ class TodoApp < CommandLineApp
     gets.chomp
   end
 
-  def print_project_menu
-    # View.new(output).print_project_menu
-    view.print_project_menu
-  end
+  extend Forwardable
 
-  def print_task_menu(project_name)
-    # View.new(output).print_task_menu(project_name)
-    view.print_task_menu(project_name)
-  end
-
-  def print_projects_list(projects)
-    # View.new(output).print_projects_list(projects)
-    view.print_projects_list(projects)
-  end
-
-  def print_tasks_list(tasks)
-    # View.new(output).print_tasks_list(tasks)
-    view.print_tasks_list(tasks)
-  end
-
-  # V, printer
-  def print_project_create_prompt
-    # View.new(output).print_project_create_prompt
-    view.print_project_create_prompt
-  end
-
-  # V, printer
-  def print_project_delete_prompt
-    # View.new(output).print_project_delete_prompt
-    view.print_project_delete_prompt
-  end
-
-  def print_project_rename_prompt
-    # View.new(output).print_project_rename_prompt
-    view.print_project_rename_prompt
-  end
-
-  def print_prompt_for_new_project_name
-    # View.new(output).print_prompt_for_new_project_name
-    view.print_prompt_for_new_project_name
-  end
-
-  def print_project_edit_prompt
-    # View.new(output).print_project_edit_prompt
-    view.print_project_edit_prompt
-  end
-
-  def print_task_edit_prompt
-    # View.new(output).print_task_edit_prompt
-    view.print_task_edit_prompt
-  end
-
-  def print_prompt_for_new_task_name
-    # View.new(output).print_prompt_for_new_task_name
-    view.print_prompt_for_new_task_name
-  end
-
-  def print_new_task_prompt
-    # View.new(output).print_new_task_prompt
-    view.print_new_task_prompt
-  end
-
-  def print_task_not_here_message(name)
-    # View.new(output).print_task_not_here_message(name )
-    view.print_task_not_here_message(name )
-  end
-
-  # ------------
+  def_delegators :view,
+    :print_project_menu,
+    :print_task_menu,
+    :print_task_menu,
+    :print_projects_list,
+    :print_tasks_list,
+    :print_project_create_prompt,
+    :print_project_delete_prompt,
+    :print_project_rename_prompt,
+    :print_project_rename_prompt,
+    :print_prompt_for_new_project_name,
+    :print_project_edit_prompt,
+    :print_task_edit_prompt,
+    :print_prompt_for_new_task_name,
+    :print_new_task_prompt,
+    :print_task_not_here_message
 
   # M, projects collection
   def project_add(name)
